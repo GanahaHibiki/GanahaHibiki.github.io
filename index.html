@@ -1,0 +1,133 @@
+<html>
+    <!--<script type="text/javascript" src="jquery-3.1.0.js"></script>-->
+    <script type="text/javascript" src="NameList.js"></script>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <!--<script type="text/javascript" src="react.js"></script>-->
+    <!--<script type="text/javascript" src="react-dom.js"></script>-->
+    <!--<script type="text/javascript" src="babel.min.js"></script>-->
+    <!--<script type="text/javascript" src="NameItem.js"></script>-->
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <script type="text/javascript">
+            var oScoreCollection = {};
+
+            var Score = function(sScoreRow) {
+                var aValues = sScoreRow.split(",");
+
+                return {
+                    no: aValues[1],
+                    name: aValues[2],
+                    gender: aValues[3],
+                    assignment1: aValues[6],
+                    assignment2: aValues[7],
+                    expReport3: aValues[8],
+                    expReport2: aValues[9],
+                    expReport1: aValues[10],
+                    attendence: aValues[11],
+                    attendenceScore: aValues[12],
+                    termEndReport: aValues[13],
+                    midTermScore: aValues[14],
+                    additionalScore: aValues[15],
+                    totalScore: aValues[16]
+                };
+            }
+
+            function onSearch() {
+                var sNo = document.getElementById("searchField").value;
+                var oScore = oScoreCollection[sNo];
+
+                updateScoreTable(oScore);
+            }
+
+            function fileUploadSuccess(o) {
+                var oFile = document.getElementById("fileInput").files[0];
+                var oReader = new FileReader();
+                oReader.onload = function(f) {
+                    var sData = oReader.result;
+                    var aRows = sData.split("\r\n");
+                    aRows.forEach(function(sRow) {
+                        if (sRow[0] !== "") {
+                            var oScore = new Score(sRow);
+                            oScoreCollection[oScore.no] = oScore;
+                        }
+                    });
+                }
+                
+                oReader.readAsText(oFile);
+            }
+
+            function updateScoreTable(oScore) {
+                document.getElementById("name");
+                var oRow = document.getElementById("scoreRow");
+                var aCells = oRow.cells;
+                for(var i = 0; i < aCells.length; i++) {
+                    var sPropName = aCells[i].className.split("_")[1];
+                    aCells[i].innerHTML = oScore[sPropName];
+                }
+            }
+            
+            // var dName = document.getElementById("name");
+        </script>
+        <div class="container">
+                <br>
+                <br>
+                <h1 class="header center orange-text">成绩查询</h1>
+                <input id="fileInput" type="file" onchange="fileUploadSuccess()" style="display: none;"></input>
+                <div class="row">
+                    <a onclick="document.getElementById('fileInput').click()" class="waves-effect waves-lighten btn-flat center-align light-green col s3 offset-s9">上传csv文件</a>
+                </div>
+                <div class="row">
+                    <label style="font-size: 2vw" class="col s3" align="right">输入学号</label>
+                    <input id="searchField" class="col s5" style="font-size: 3vw"/>
+                    <a id="searchBtn" class="waves-effect waves-lighten btn-flat center-align light-green col s3 offset-s1" onclick="onSearch()">搜索</a>
+                </div>
+                <div>
+                    <table class="striped responsive-table bordered">
+                        <thead>
+                            <tr>
+                                <th>学号</th>
+                                <th>姓名</th>
+                                <th>性别</th>
+                                <th>第一次作业（2.5%）</th>
+                                <th>第二次作业（2.5%）</th>
+                                <th>实验三报告（5%）</th>
+                                <th>实验二报告（5%）</th>
+                                <th>实验一报告（5%）</th>
+                                <th>考勤情况</th>
+                                <th>考勤成绩</th>
+                                <th>期末大报告（30%）</th>
+                                <th>期中考试（50%）</th>
+                                <th>附加分</th>
+                                <th>总成绩</th>                            
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr id="scoreRow">
+                                <td class="data_no" style="align=center">学号</td>
+                                <td class="data_name">姓名</td>
+                                <td class="data_gender">性别</td>
+                                <td class="data_assignment1">第一次作业（2.5%）</td>
+                                <td class="data_assignment2">第二次作业（2.5%）</td>
+                                <td class="data_expReport3">实验三报告（5%）</td>
+                                <td class="data_expReport2">实验二报告（5%）</td>
+                                <td class="data_expReport1">实验一报告（5%）</td>
+                                <td class="data_attendence">考勤情况</td>
+                                <td class="data_attendenceScore">考勤成绩</td>
+                                <td class="data_termEndReport">期末大报告（30%）</td>
+                                <td class="data_midTermScore">期中考试（50%）</td>
+                                <td class="data_additionalScore">附加分</td>
+                                <td class="data_totalScore">总成绩</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+
+    </body>
+</html>
