@@ -24,8 +24,8 @@
             function genRows(aData) {
                 let aRows = [];
                 aData.forEach((aRowData, rowIndex) => {
+                    let aUris = []
                     aRowData.forEach((sIconId, index) => {
-                        let aUris = []
                         aUris.push(MAPPING_TOOL.getUri(sIconId));
                     });
                     aRows.push( <RowItem rowIndex={rowIndex} cardUris={aUris} />);
