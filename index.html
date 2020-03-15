@@ -15,7 +15,7 @@
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <script type="text/javascript" src="js/MappingTool.js"></script>
-        <script type="text/babel" src="./js/RowItem.js"></script>
+        <!-- <script type="text/babel" src="./js/RowItem.js"></script> -->
     </head>
     <body>
         <script type="text/babel">
@@ -24,12 +24,14 @@
             function genRows(aData) {
                 let aRows = [];
                 aData.forEach((aRowData, rowIndex) => {
-                    let aUris = []
+                    let aUris = [];
                     aRowData.forEach((sIconId, index) => {
                         aUris.push(MAPPING_TOOL.getUri(sIconId));
                     });
-                    aRows.push( <RowItem rowIndex={rowIndex} cardUris={aUris} />);
+                    aRows.push( <RowItem key={"row" + rowIndex} rowIndex={rowIndex} cardUris={aUris} />);
                 })
+
+                return aRows;
             }
 
 
@@ -40,10 +42,11 @@
                 ["1", "2", "2"],
             ];
 
+            debugger;
             let rows = genRows(cardData);
 
             let table = (
-                <table class="striped responsive-table bordered">
+                <table className="striped responsive-table bordered">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -52,7 +55,7 @@
                     </thead>
                     
                     <tbody>
-                        rows
+                        {rows}
                     </tbody>
                 </table>
             )
