@@ -1,8 +1,8 @@
 class MappingTool {
     constructor() {
         this.map = {
-            "1": "baidu.gif",
-            "2": "yuna.jpg"
+            "1": "A.png",
+            "2": "B.png"
         }
     }
 
