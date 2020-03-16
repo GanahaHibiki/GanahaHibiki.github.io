@@ -26,6 +26,6 @@ class MappingTool {
     }
 
     getUri(id) {
-        return "/icons/" + this.map[id];
+        return "./icons/" + this.map[id];
     }
 }
