@@ -7,7 +7,7 @@ class RowItem extends React.Component {
     let imgs = [];
     this.props.cardUris.forEach((uri, index) => {
       imgs.push(
-        (<img key={+new Date() + "_" + this.props.rowIndex + "_" + index} src={uri}></img>)
+        (<img key={+new Date() + "_" + this.props.rowIndex + "_" + index} style={{height: '8rem'}} src={uri}></img>)
       )
     });
 
