@@ -14,7 +14,7 @@ class RowItem extends React.Component {
 
     return (
       <tr id="scoreRow">
-        <td style={{ align: 'center' }}>{this.props.rowIndex}</td>
+        <td style={{ align: 'center' }}>{+this.props.rowIndex + 1}</td>
         <td>
           {imgs}
         </td>
