@@ -1,0 +1,8 @@
+.IconBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.RowBox {
+    display: flex;
+}
